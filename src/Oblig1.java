@@ -88,6 +88,8 @@ public class Oblig1 {
     ///// Oppgave 4 //////////////////////////////////////
     public static void delsortering(int[] a) {
         //throw new NotImplementedException();
+        if (a.length == 0 || a.length == 1)
+            return;
         int venstre=0;
         int høyre=a.length-1;
         while(true){
@@ -97,6 +99,14 @@ public class Oblig1 {
                 høyre--;
             }
             if (høyre<venstre){ swap(a, venstre, høyre);}
+            if (høyre== venstre){
+                quickSort(a, 0, høyre);
+                if(venstre == a.length-1){
+                    quickSort(a, venstre-1, a.length);
+                }
+                else { quickSort(a, venstre, a.length);}
+            }
+            break;
 
 
         }
