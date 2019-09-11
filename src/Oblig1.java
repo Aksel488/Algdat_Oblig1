@@ -87,7 +87,11 @@ public class Oblig1 {
 
     ///// Oppgave 4 //////////////////////////////////////
     public static void delsortering(int[] a) {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+        int venstre=0;
+        int høyre=a.length-1;
+
+
     }
 
     ///// Oppgave 5 //////////////////////////////////////
@@ -131,4 +135,10 @@ public class Oblig1 {
         throw new NotImplementedException();
     }
 
+    ///hjelpemetoder///
+
+    public static void bytt(int[] a, int i, int j) {
+        a[i] = a[j];
+        a[j] = a[i];
+    }
 }  // Oblig1
