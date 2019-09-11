@@ -90,6 +90,16 @@ public class Oblig1 {
         //throw new NotImplementedException();
         int venstre=0;
         int høyre=a.length-1;
+        while(true){
+            while (a[høyre] % 2 == 0 && høyre>venstre){
+                venstre++;}
+            while (a[venstre] % 2 != 0 && høyre>venstre ){
+                høyre--;
+            }
+            if (høyre<venstre){ swap(a, venstre, høyre);}
+
+
+        }
 
 
     }
@@ -135,10 +145,59 @@ public class Oblig1 {
         throw new NotImplementedException();
     }
 
-    ///hjelpemetoder///
+    ///hjelpemetoder fra forelesning///
 
-    public static void bytt(int[] a, int i, int j) {
-        a[i] = a[j];
-        a[j] = a[i];
+
+    public static void swap(int[] values, int from, int to) {
+        int tmp = values[from];
+        values[from] = values[to];
+        values[to] = tmp;
+    }
+
+    public static int partition(int[] values, int begin, int end, int pivot_index) {
+        swap(values, pivot_index, end-1);
+
+        int l = begin;
+        int r = end-2;
+
+        while (l < r) {
+            //Move left pointer until first larger
+            while (l <= r && values[l] < values[end-1]) {
+                ++l;
+            }
+            while (l <= r && values[r] > values[end-1]) {
+                --r;
+            }
+            if (l < r) {
+                swap(values, l, r);
+                ++l;
+                --r;
+            }
+        }
+
+        swap(values, l, end-1);
+
+        return l;
+    }
+
+
+    public static void quickSort(int[] values, int left, int right) {
+
+        if (left >= right) {
+            return;
+        }
+
+        // Velg en pivot
+        int pivot_index = (left + right) / 2;
+        int pivot = values[pivot_index];
+
+        // Partisjonering
+        // Sørg for at alle til høyre blir større enn eller lik pivot
+        // og at alle til venstre er mindre enn pivot
+        int new_pivot_index = partition(values, left, right, pivot_index);
+
+        // Gjenta for høyre subliste og venstre subliste
+        quickSort(values, left, new_pivot_index-1);
+        quickSort(values, new_pivot_index+1, right);
     }
 }  // Oblig1
