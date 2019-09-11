@@ -62,7 +62,21 @@ public class Oblig1 {
 
     ///// Oppgave 2 //////////////////////////////////////
     public static int antallUlikeSortert(int[] a) {
-        throw new NotImplementedException();
+       // throw new NotImplementedException();
+        for (int i=1; i<a.length; i++){
+            if(a[i-1]>a[i]){
+                throw new IllegalStateException("det er ikke sortert i stigende rekkefølge");
+            }
+        }
+        int teller=1;
+        if(a.length == 0){return 0;}
+        for(int i=0; i<a.length-1; i++){
+            if(a[i] != a[i+1]){
+                teller++;
+            }
+
+        }
+        return teller;
     }
 
 
