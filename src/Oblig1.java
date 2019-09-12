@@ -13,10 +13,11 @@ public class Oblig1 {
 
     ///// Oppgave 1 //////////////////////////////////////
     public static void main(String[] args) {
-        System.out.println("Hello World");
 
-        int[] a = {9,4,8,1};
-        System.out.println(maks(a));
+        int[] a = {9,4,8,1,8,4};
+
+        System.out.println(antallUlikeUsortert(a));
+
     }
 
 
@@ -44,6 +45,7 @@ public class Oblig1 {
     }
 
     public static int ombyttinger(int[] a) {
+
         int minst;
         int ombyttinger = 0;
 
@@ -62,14 +64,17 @@ public class Oblig1 {
 
     ///// Oppgave 2 //////////////////////////////////////
     public static int antallUlikeSortert(int[] a) {
-       // throw new NotImplementedException();
-        for (int i=1; i<a.length; i++){
+
+        if(a.length == 0){return 0;}
+
+        for (int i=1; i < a.length; i++){
             if(a[i-1]>a[i]){
                 throw new IllegalStateException("det er ikke sortert i stigende rekkefølge");
             }
         }
+
         int teller=1;
-        if(a.length == 0){return 0;}
+
         for(int i=0; i<a.length-1; i++){
             if(a[i] != a[i+1]){
                 teller++;
@@ -82,7 +87,28 @@ public class Oblig1 {
 
     ///// Oppgave 3 //////////////////////////////////////
     public static int antallUlikeUsortert(int[] a) {
-        throw new NotImplementedException();
+
+        if (a.length == 0) {
+            return 0;
+        }
+
+        int teller = 0;
+
+        for (int i = 0; i < a.length; i++) {
+            int j = 0;
+
+            for (j = 0; j < a.length; j++) {
+
+                if (a[i] == a[j]) {
+                    break;
+                }
+            }
+            if (i == j) {
+                teller++;
+            }
+        }
+
+        return teller;
     }
 
     ///// Oppgave 4 //////////////////////////////////////
