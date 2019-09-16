@@ -285,10 +285,37 @@ public class Oblig1 {
     ///// Oppgave 10 //////////////////////////////////////
     public static int bokstavNr(char bokstav) {
         throw new NotImplementedException();
+
     }
 
     public static boolean inneholdt(String a, String b) {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+        if(a.length()== 0 || a.equals(b)){
+            return true;
+        }
+        char[] bokstavNr = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','Æ','Ø','Å'};
+
+        long [] aCount = new long [29];
+        long [] bCount = new long [29];
+
+        for (int i=0; a.length()>i; i++){
+            for (int j=0; bokstavNr.length>j; j++){
+                if(a.charAt(i)== bokstavNr[j]){
+                    aCount[j]= aCount[j]+1;
+                }
+            }
+        }
+        for(int i=0 ; i<b.length(); i++){
+            for (int j = 0 ; j<bokstavNr.length;j++) {
+                if (b.charAt(i)==bokstavNr[j]){
+                    bCount[j]= bCount[j] +1;
+                }
+            }
+        }
+        for (int i=0; aCount.length>i; i++){
+            if (aCount[i]>bCount[i]){return false;}
+        }
+        return true;
     }
 
     ///hjelpemetoder fra forelesning///
