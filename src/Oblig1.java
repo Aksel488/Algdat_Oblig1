@@ -223,7 +223,18 @@ public class Oblig1 {
 
     ///// Oppgave 8 //////////////////////////////////////
     public static int[] indekssortering(int[] a) {
-        throw new NotImplementedException();
+       // throw new NotImplementedException();
+        int[] index = new int[a.length];
+        int[] b = a.clone();
+        quicksort(b,0,b.length-1);
+        for(int i = 0; a.length>i; i++){
+            for(int j = 0; a.length>j; j++){
+                if(b[i]==a[j] && ikkeIArray(index, j)){
+                    index[i]=j;
+                }
+            }
+        }
+        return index;
     }
 
 
@@ -280,6 +291,13 @@ public class Oblig1 {
                 bytt(a, venstre, høyre);                 // bytter om a[venstre] og a[høyre]
             } else return venstre;
         }
+    }
+    public static boolean ikkeIArray(int[] a, int j){
+        for (int i : a ) {
+            if (j == i)
+                return false;
+        }
+        return true;
     }
 
     
