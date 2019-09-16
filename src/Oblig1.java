@@ -240,7 +240,46 @@ public class Oblig1 {
 
     ///// Oppgave 9 //////////////////////////////////////
     public static int[] tredjeMin(int[] a) {
-        throw new NotImplementedException();
+       // throw new NotImplementedException();
+        if(a.length<3){throw new NoSuchElementException("tabellen er mindre enn 3 verdier");}
+        int [] b= Arrays.copyOf(a,3);
+        b=indekssortering(b);
+        int minst = b[0]; // minst index
+        int nest = b[1]; //nest minst index
+        int tredje = b[2]; //tredje minst index
+
+        int minstV = a[minst];
+        int nestminstV = a[nest];
+        int tredjeminstV = a[tredje];
+
+        for(int i = 3 ; i<a.length; i++){
+            if(a[i]<tredjeminstV){
+                if(a[i]<nestminstV){
+                    if(a[i]<minstV){
+                        tredje=nest;
+                        tredjeminstV=nestminstV;
+
+                        nest=minst;
+                        nestminstV=minstV;
+
+                        minst=i;
+                        minstV=a[minst];
+                    }
+                    else {
+                        tredje=nest;
+                        tredjeminstV=nestminstV;
+
+                        nest=i;
+                        nestminstV=a[nest];
+                    }
+                }
+                else {
+                    tredje=i;
+                    tredjeminstV=a[tredje];
+                }
+            }
+        }
+        return new int[] { minst, nest, tredje};
     }
 
     ///// Oppgave 10 //////////////////////////////////////
