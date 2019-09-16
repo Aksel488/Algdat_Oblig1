@@ -14,29 +14,31 @@ public class Oblig1 {
     ///// Oppgave 1 //////////////////////////////////////
     public static void main(String[] args) {
 
-        char[] a = {'A','B','C'};
+        char[] a = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
         char[] b = {'A','B','C'};
 
-        rotasjon(a,4);
-        rotasjon(b, -4);
+        int x = -6;
+
+        rotasjon(a,x);
+        //rotasjon(b, -4);
 
         for (int i = 0; i < a.length; i++) {
             System.out.print(a[i]+" ");
         }
 
-        System.out.println();
 
-        for (int i = 0; i < b.length; i++) {
-            System.out.print(b[i]+" ");
-        }
+
+        //Teste tid
+
+        /*System.out.println();
 
         char[] x = new char[100_000];
         long tid = System.currentTimeMillis();
-        rotasjon(x, 500);
+        rotasjon(x, 9999);
         tid = System.currentTimeMillis() - tid;
 
         System.out.println(tid);
-
+        */
     }
 
 
@@ -175,37 +177,35 @@ public class Oblig1 {
     ///// Oppgave 6 //////////////////////////////////////
     public static void rotasjon(char[] a, int k) {
 
-        if (a.length == 0 || k == 0) {
+        int lengde = a.length;
+        if (lengde < 2) {
             return;
         }
 
-        if (k > 0) {
-
-            for (int i = 0; i < k; i++) {
-
-                char temp = a[a.length-1];
-
-                for ( int j = a.length-2; j > -1; j--) {
-                    a[j+1] = a[j];
-                }
-
-                a[0] = temp;
-            }
+        if ((k %= lengde) < 0) {
+            k += lengde;
         }
 
-        if (k < 0) {
+        int gcd = GCD(lengde, k);
 
-            for (int i = 0; i > k; k++) {
+        for (int i = 0; i < gcd; i++) {
+            char temp = a[i];
 
-                char temp = a[0];
-
-                for (int j = 1; j < a.length; j++) {
-                    a[j-1] = a[j];
+            for (int l = i - k, j = i; l != i; l -= k) {
+                if (l < 0) {
+                    l += lengde;
                 }
 
-                a[a.length-1] = temp;
+                a[j] = a[l];
+                j = l;
             }
+            a[i + k] = temp;
         }
+    }
+
+    private static int GCD(int a, int b) {
+        if (b==0) return a;
+        return GCD(b,a % b);
     }
 
     ///// Oppgave 7 //////////////////////////////////////
