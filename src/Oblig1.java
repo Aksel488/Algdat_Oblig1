@@ -132,30 +132,32 @@ public class Oblig1 {
     ///// Oppgave 4 //////////////////////////////////////
     public static void delsortering(int[] a) {
         //throw new NotImplementedException();
-        if (a.length == 0 || a.length == 1)
-            return;
+        if (a.length == 0 || a.length == 1){
+            return;}
         int venstre=0;
         int høyre=a.length-1;
-        while(true){
-            while (a[høyre] % 2 == 0 && høyre>venstre){
-                venstre++;}
-            while (a[venstre] % 2 != 0 && høyre>venstre ){
+
+
+        while(true) {
+            while (a[venstre] % 2 != 0 && høyre > venstre) {
+                venstre++;
+            }
+            while (a[høyre] % 2 == 0 && venstre < høyre) {
                 høyre--;
             }
-            if (høyre<venstre){ swap(a, venstre, høyre);}
-            if (høyre== venstre){
-                quickSort(a, 0, høyre);
-                if(venstre == a.length-1){
-                    quickSort(a, venstre-1, a.length);
-                }
-                else { quickSort(a, venstre, a.length);}
+            if (høyre > venstre) {
+                bytt(a, venstre, høyre);
             }
-            break;
-
-
+            if (venstre == høyre) {
+                quicksort(a, 0, høyre-1);
+                if (venstre == a.length - 1) {
+                    quicksort(a, venstre - 1, a.length-1);
+                } else {
+                    quicksort(a, venstre, a.length-1);
+                }
+                break;
+            }
         }
-
-
     }
 
     ///// Oppgave 5 //////////////////////////////////////
@@ -221,7 +223,18 @@ public class Oblig1 {
 
     ///// Oppgave 8 //////////////////////////////////////
     public static int[] indekssortering(int[] a) {
-        throw new NotImplementedException();
+       // throw new NotImplementedException();
+        int[] index = new int[a.length];
+        int[] b = a.clone();
+        quicksort(b,0,b.length-1);
+        for(int i = 0; a.length>i; i++){
+            for(int j = 0; a.length>j; j++){
+                if(b[i]==a[j] && ikkeIArray(index, j)){
+                    index[i]=j;
+                }
+            }
+        }
+        return index;
     }
 
 
@@ -242,56 +255,50 @@ public class Oblig1 {
     ///hjelpemetoder fra forelesning///
 
 
-    public static void swap(int[] values, int from, int to) {
-        int tmp = values[from];
-        values[from] = values[to];
-        values[to] = tmp;
+
+
+
+    public static void bytt(int[] a, int fra, int til) {
+        int temp = a[fra];
+        a[fra] = a[til];
+        a[til] = temp;
     }
 
-    public static int partition(int[] values, int begin, int end, int pivot_index) {
-        swap(values, pivot_index, end-1);
+    private static void quicksort(int[] a, int venstre, int høyre) {
+        if (venstre >= høyre) return;  // a[v:h] er tomt eller har maks ett element
+        int k = Parter2(a, venstre, høyre, (venstre + høyre) / 2);  // bruker midtverdien
+        quicksort(a, venstre, k - 1);     // sorterer intervallet a[v:k-1]
+        quicksort(a, k + 1, høyre);     // sorterer intervallet a[k+1:h]
+    }
 
-        int l = begin;
-        int r = end-2;
 
-        while (l < r) {
-            //Move left pointer until first larger
-            while (l <= r && values[l] < values[end-1]) {
-                ++l;
-            }
-            while (l <= r && values[r] > values[end-1]) {
-                --r;
-            }
-            if (l < r) {
-                swap(values, l, r);
-                ++l;
-                --r;
-            }
+
+    private static int Parter2(int[] a, int start, int slutt, int indeks) {
+        bytt(a, indeks, slutt);           // skilleverdi a[indeks] flyttes bakerst
+        int pos = parter(a, start, slutt - 1, a[slutt]);  // partisjonerer a[start:slutt − 1]
+        bytt(a, pos, slutt);              // bytter for å få skilleverdien på rett plass
+        return pos;                   // returnerer posisjonen til skilleverdien .Dden er nå sortert
+    }
+
+
+    private static int parter(int[] a, int venstre, int høyre, int skilleverdi) {
+        while (true)                                  // stopper når venstre > høyre
+        {
+            while (venstre <= høyre && a[venstre] < skilleverdi) venstre++;   // høyre er stoppverdi for venstre
+            while (venstre <= høyre && a[høyre] >= skilleverdi) høyre--;  // venstre er stoppverdi for høyre
+
+            if (venstre < høyre) {
+                bytt(a, venstre, høyre);                 // bytter om a[venstre] og a[høyre]
+            } else return venstre;
         }
-
-        swap(values, l, end-1);
-
-        return l;
     }
-
-
-    public static void quickSort(int[] values, int left, int right) {
-
-        if (left >= right) {
-            return;
+    public static boolean ikkeIArray(int[] a, int j){
+        for (int i : a ) {
+            if (j == i)
+                return false;
         }
-
-        // Velg en pivot
-        int pivot_index = (left + right) / 2;
-        int pivot = values[pivot_index];
-
-        // Partisjonering
-        // Sørg for at alle til høyre blir større enn eller lik pivot
-        // og at alle til venstre er mindre enn pivot
-        int new_pivot_index = partition(values, left, right, pivot_index);
-
-        // Gjenta for høyre subliste og venstre subliste
-        quickSort(values, left, new_pivot_index-1);
-        quickSort(values, new_pivot_index+1, right);
+        return true;
     }
+
+    
 }  // Oblig1
