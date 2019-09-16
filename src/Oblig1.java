@@ -14,9 +14,28 @@ public class Oblig1 {
     ///// Oppgave 1 //////////////////////////////////////
     public static void main(String[] args) {
 
-        int[] a = {9,4,8,1,8,4};
+        char[] a = {'A','B','C'};
+        char[] b = {'A','B','C'};
 
-        System.out.println(antallUlikeUsortert(a));
+        rotasjon(a,4);
+        rotasjon(b, -4);
+
+        for (int i = 0; i < a.length; i++) {
+            System.out.print(a[i]+" ");
+        }
+
+        System.out.println();
+
+        for (int i = 0; i < b.length; i++) {
+            System.out.print(b[i]+" ");
+        }
+
+        char[] x = new char[100_000];
+        long tid = System.currentTimeMillis();
+        rotasjon(x, 500);
+        tid = System.currentTimeMillis() - tid;
+
+        System.out.println(tid);
 
     }
 
@@ -27,9 +46,6 @@ public class Oblig1 {
         if (a.length == 0) {
             throw new NoSuchElementException("Arrayet er tomt");
         }
-        /*if (a.length == 1) {
-            return a[0];
-        }*/
 
         int minst;
 
@@ -149,18 +165,49 @@ public class Oblig1 {
             return;
         }
 
-        char siste = a[a.length-1];
+        char temp = a[a.length-1];
 
         for ( int i = a.length-2; i > -1; i--) {
             a[i+1] = a[i];
         }
 
-        a[0] = siste;
+        a[0] = temp;
     }
 
     ///// Oppgave 6 //////////////////////////////////////
     public static void rotasjon(char[] a, int k) {
-        throw new NotImplementedException();
+
+        if (a.length == 0 || k == 0) {
+            return;
+        }
+
+        if (k > 0) {
+
+            for (int i = 0; i < k; i++) {
+
+                char temp = a[a.length-1];
+
+                for ( int j = a.length-2; j > -1; j--) {
+                    a[j+1] = a[j];
+                }
+
+                a[0] = temp;
+            }
+        }
+
+        if (k < 0) {
+
+            for (int i = 0; i > k; k++) {
+
+                char temp = a[0];
+
+                for (int j = 1; j < a.length; j++) {
+                    a[j-1] = a[j];
+                }
+
+                a[a.length-1] = temp;
+            }
+        }
     }
 
     ///// Oppgave 7 //////////////////////////////////////
