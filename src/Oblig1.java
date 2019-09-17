@@ -111,21 +111,21 @@ public class Oblig1 {
         if (a.length == 0 || a.length == 1){
             return;}
         int venstre=0;
-        int høyre=a.length-1;
+        int hoyre=a.length-1;
 
 
         while(true) {
-            while (a[venstre] % 2 != 0 && høyre > venstre) {
+            while (a[venstre] % 2 != 0 && hoyre > venstre) {
                 venstre++;
             }
-            while (a[høyre] % 2 == 0 && venstre < høyre) {
-                høyre--;
+            while (a[hoyre] % 2 == 0 && venstre < hoyre) {
+                hoyre--;
             }
-            if (høyre > venstre) {
-                bytt(a, venstre, høyre);
+            if (hoyre > venstre) {
+                bytt(a, venstre, hoyre);
             }
-            if (venstre == høyre) {
-                quicksort(a, 0, høyre-1);
+            if (venstre == hoyre) {
+                quicksort(a, 0, hoyre-1);
                 if (venstre == a.length - 1) {
                     quicksort(a, venstre - 1, a.length-1);
                 } else {
@@ -344,11 +344,11 @@ public class Oblig1 {
         a[til] = temp;
     }
 
-    private static void quicksort(int[] a, int venstre, int høyre) {
-        if (venstre >= høyre) return;  // a[v:h] er tomt eller har maks ett element
-        int k = Parter2(a, venstre, høyre, (venstre + høyre) / 2);  // bruker midtverdien
+    private static void quicksort(int[] a, int venstre, int hoyre) {
+        if (venstre >= hoyre) return;  // a[v:h] er tomt eller har maks ett element
+        int k = Parter2(a, venstre, hoyre, (venstre + hoyre) / 2);  // bruker midtverdien
         quicksort(a, venstre, k - 1);     // sorterer intervallet a[v:k-1]
-        quicksort(a, k + 1, høyre);     // sorterer intervallet a[k+1:h]
+        quicksort(a, k + 1, hoyre);     // sorterer intervallet a[k+1:h]
     }
 
 
@@ -361,14 +361,14 @@ public class Oblig1 {
     }
 
 
-    private static int parter(int[] a, int venstre, int høyre, int skilleverdi) {
+    private static int parter(int[] a, int venstre, int hoyre, int skilleverdi) {
         while (true)                                  // stopper når venstre > høyre
         {
-            while (venstre <= høyre && a[venstre] < skilleverdi) venstre++;   // høyre er stoppverdi for venstre
-            while (venstre <= høyre && a[høyre] >= skilleverdi) høyre--;  // venstre er stoppverdi for høyre
+            while (venstre <= hoyre && a[venstre] < skilleverdi) venstre++;   // høyre er stoppverdi for venstre
+            while (venstre <= hoyre && a[hoyre] >= skilleverdi) hoyre--;  // venstre er stoppverdi for høyre
 
-            if (venstre < høyre) {
-                bytt(a, venstre, høyre);                 // bytter om a[venstre] og a[høyre]
+            if (venstre < hoyre) {
+                bytt(a, venstre, hoyre);                 // bytter om a[venstre] og a[høyre]
             } else return venstre;
         }
     }
