@@ -49,7 +49,7 @@ public class Oblig1 {
         return ombyttinger;
     }
 
-    /*
+    /**
     Det blir minst ombytninger naar a er sortert stigende.
     Det blir flest hvis det storste tallet ligger forann, da vil det bli n - 1 ombytninger.
     I snitt vil det derfor bli en ombytning hver gang det er et stort tall forann et lite.
