@@ -235,7 +235,21 @@ public class Oblig1 {
 
     /// 7b)
     public static String flett(String... s) {
-        
+        int k = 0;
+        int p = s.length;
+        String ut = "";
+        for (int i = 0; i < s.length; i++) {
+          if (s[i].length() > k)
+            k = s[i].length();
+         }
+        for (int i = 0; i < k; i++) {
+            for (int j = 0; j < s.length; j++) {
+                if (s[j].length() > i) {
+                    ut += s[j].charAt(i);
+                }
+            }
+        }
+        return ut;
     }
 
     ///// Oppgave 8 //////////////////////////////////////
