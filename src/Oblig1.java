@@ -14,17 +14,10 @@ public class Oblig1 {
     ///// Oppgave 1 //////////////////////////////////////
     public static void main(String[] args) {
 
-        char[] a = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
-        char[] b = {'A','B','C'};
+        String s = "";
+        String t = "AB";
 
-        int x = -6;
-
-        rotasjon(a,x);
-        //rotasjon(b, -4);
-
-        for (int i = 0; i < a.length; i++) {
-            System.out.print(a[i]+" ");
-        }
+        System.out.println(flett(s,t));
 
 
 
@@ -213,7 +206,31 @@ public class Oblig1 {
     ///// Oppgave 7 //////////////////////////////////////
     /// 7a)
     public static String flett(String s, String t) {
-        throw new NotImplementedException();
+        String ut = "";
+
+        int i = 0;
+        int j = 0;
+
+        while (i < s.length() && j < t.length()) {
+            ut += s.charAt(i);
+            i++;
+            ut += t.charAt(j);
+            j++;
+        }
+
+        if (i < s.length()) {
+            for (int l = i; l < s.length(); l++) {
+                ut += s.charAt(l);
+            }
+        }
+
+        if (j < t.length()) {
+            for (int k = j; k < t.length(); k++) {
+                ut += t.charAt(k);
+            }
+        }
+
+        return ut;
     }
 
     /// 7b)
