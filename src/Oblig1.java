@@ -235,7 +235,7 @@ public class Oblig1 {
 
     /// 7b)
     public static String flett(String... s) {
-        throw new NotImplementedException();
+        
     }
 
     ///// Oppgave 8 //////////////////////////////////////
