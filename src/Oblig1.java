@@ -12,30 +12,6 @@ public class Oblig1 {
     }
 
     ///// Oppgave 1 //////////////////////////////////////
-    public static void main(String[] args) {
-
-        String s = "";
-        String t = "AB";
-
-        System.out.println(flett(s,t));
-
-
-
-        //Teste tid
-
-        /*System.out.println();
-
-        char[] x = new char[100_000];
-        long tid = System.currentTimeMillis();
-        rotasjon(x, 9999);
-        tid = System.currentTimeMillis() - tid;
-
-        System.out.println(tid);
-        */
-    }
-
-
-    ///// Oppgave 1 //////////////////////////////////////
     public static int maks(int[] a) {
 
         if (a.length == 0) {
@@ -72,6 +48,13 @@ public class Oblig1 {
 
         return ombyttinger;
     }
+
+    /*
+    Det blir minst ombytninger naar a er sortert stigende.
+    Det blir flest hvis det storste tallet ligger forann, da vil det bli n - 1 ombytninger.
+    I snitt vil det derfor bli en ombytning hver gang det er et stort tall forann et lite.
+    Altsaa blir det n - h ombytninger der h er det n-te harmoniske tallet.
+     */
 
     ///// Oppgave 2 //////////////////////////////////////
     public static int antallUlikeSortert(int[] a) {
@@ -258,10 +241,10 @@ public class Oblig1 {
         int[] index = new int[a.length];
         int[] b = a.clone();
         quicksort(b,0,b.length-1);
-        for(int i = 0; a.length>i; i++){
-            for(int j = 0; a.length>j; j++){
-                if(b[i]==a[j] && ikkeIArray(index, j)){
-                    index[i]=j;
+        for(int i = 0; a.length > i; i++){
+            for(int j = 0; a.length > j; j++){
+                if(b[i] == a[j] && ikkeIArray(index, j)){
+                    index[i] = j;
                 }
             }
         }
@@ -389,6 +372,7 @@ public class Oblig1 {
             } else return venstre;
         }
     }
+
     public static boolean ikkeIArray(int[] a, int j){
         for (int i : a ) {
             if (j == i)
