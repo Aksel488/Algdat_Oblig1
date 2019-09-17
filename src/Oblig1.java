@@ -31,6 +31,14 @@ public class Oblig1 {
         return a[a.length-1];
     }
 
+    /**
+     Det blir minst ombytninger naar a er sortert stigende.
+     Det blir flest hvis det storste tallet ligger forann, da vil det bli n - 1 ombytninger.
+     I snitt vil det derfor bli en ombytning hver gang det er et stort tall forann et lite.
+     Altsaa blir det n - h ombytninger der h er det n-te harmoniske tallet.
+     Dette er en daarligere metode enn de maks metodene vi tidligere har sett paa, fordi de ikke har ombyttninger.
+     */
+
     public static int ombyttinger(int[] a) {
 
         int minst;
@@ -49,12 +57,7 @@ public class Oblig1 {
         return ombyttinger;
     }
 
-    /**
-    Det blir minst ombytninger naar a er sortert stigende.
-    Det blir flest hvis det storste tallet ligger forann, da vil det bli n - 1 ombytninger.
-    I snitt vil det derfor bli en ombytning hver gang det er et stort tall forann et lite.
-    Altsaa blir det n - h ombytninger der h er det n-te harmoniske tallet.
-     */
+
 
     ///// Oppgave 2 //////////////////////////////////////
     public static int antallUlikeSortert(int[] a) {
