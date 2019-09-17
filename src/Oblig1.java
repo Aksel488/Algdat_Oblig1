@@ -345,30 +345,30 @@ public class Oblig1 {
     }
 
     private static void quicksort(int[] a, int venstre, int hoyre) {
-        if (venstre >= hoyre) return;  // a[v:h] er tomt eller har maks ett element
-        int k = Parter2(a, venstre, hoyre, (venstre + hoyre) / 2);  // bruker midtverdien
-        quicksort(a, venstre, k - 1);     // sorterer intervallet a[v:k-1]
-        quicksort(a, k + 1, hoyre);     // sorterer intervallet a[k+1:h]
+        if (venstre >= hoyre) return;
+        int k = Parter2(a, venstre, hoyre, (venstre + hoyre) / 2);
+        quicksort(a, venstre, k - 1);
+        quicksort(a, k + 1, hoyre);
     }
 
 
 
     private static int Parter2(int[] a, int start, int slutt, int indeks) {
-        bytt(a, indeks, slutt);           // skilleverdi a[indeks] flyttes bakerst
-        int pos = parter(a, start, slutt - 1, a[slutt]);  // partisjonerer a[start:slutt − 1]
-        bytt(a, pos, slutt);              // bytter for å få skilleverdien på rett plass
-        return pos;                   // returnerer posisjonen til skilleverdien .Dden er nå sortert
+        bytt(a, indeks, slutt);
+        int pos = parter(a, start, slutt - 1, a[slutt]);
+        bytt(a, pos, slutt);
+        return pos;
     }
 
 
     private static int parter(int[] a, int venstre, int hoyre, int skilleverdi) {
-        while (true)                                  // stopper når venstre > høyre
+        while (true)
         {
-            while (venstre <= hoyre && a[venstre] < skilleverdi) venstre++;   // høyre er stoppverdi for venstre
-            while (venstre <= hoyre && a[hoyre] >= skilleverdi) hoyre--;  // venstre er stoppverdi for høyre
+            while (venstre <= hoyre && a[venstre] < skilleverdi) venstre++;
+            while (venstre <= hoyre && a[hoyre] >= skilleverdi) hoyre--;
 
             if (venstre < hoyre) {
-                bytt(a, venstre, hoyre);                 // bytter om a[venstre] og a[høyre]
+                bytt(a, venstre, hoyre);
             } else return venstre;
         }
     }
