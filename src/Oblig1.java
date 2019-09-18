@@ -1,4 +1,5 @@
-////// Løsningsforslag Oblig 1 - 2019 ////////////////////////
+// Aksel Susegg, s325917
+// Sander Saether, s331358
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
